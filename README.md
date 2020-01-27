@@ -9,6 +9,8 @@ UnityPackageを導入するとメニューが追加されます。
 
 ## 設定項目
 
+![設定項目](https://github.com/TORISOUP/AnimatorControllerLayouter/blob/master/doc/window.png?raw=true)
+
 |要素|意味|
 |:--:|:--:|
 |Controller|対象のAnimatorController|
