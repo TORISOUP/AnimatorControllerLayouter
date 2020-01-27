@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace TORISOUP.AnimatorControllerAlignment.Editor
+namespace TORISOUP.AnimatorControllerLayouter.Editor
 {
-    public static class AlignmentTask
+    internal static class LayoutHelper
     {
         private static int FindState(ChildAnimatorState[] states, AnimatorState state)
         {
@@ -22,7 +19,7 @@ namespace TORISOUP.AnimatorControllerAlignment.Editor
             return -1;
         }
 
-        public static void GridLayout(AnimatorStateMachine stateMachine)
+        internal static void GridLayout(AnimatorStateMachine stateMachine)
         {
             var max = stateMachine.states.Length;
             var positions = new Vector3[max];
@@ -49,7 +46,7 @@ namespace TORISOUP.AnimatorControllerAlignment.Editor
         }
 
 
-        public static void Align(
+        internal static void Align(
             AnimatorStateMachine stateMachine,
             int tryCount,
             float relationK,

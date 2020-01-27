@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TORISOUP.AnimatorControllerLayouter.Editor;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
 namespace TORISOUP.AnimatorControllerAlignment.Editor
 {
-    public class AlignmentWindow : EditorWindow
+    public class LayoutWindow : EditorWindow
     {
         private AnimatorController controller = null;
         private int selectedLayers = 1;
@@ -18,12 +19,11 @@ namespace TORISOUP.AnimatorControllerAlignment.Editor
         private bool resetPosition;
         private int tryCount = 1000;
         
-        //! MenuItem("メニュー名/項目名") のフォーマットで記載してね
-        [MenuItem("Custom/Align AnimationController")]
+        [MenuItem("Custom utils/Layout AnimatorController")]
         static void ShowWindow()
         {
-            var w = GetWindow<AlignmentWindow>();
-            w.titleContent = new GUIContent("Align AnimationController");
+            var w = GetWindow<LayoutWindow>();
+            w.titleContent = new GUIContent("Layout AnimatorController");
         }
 
         private void OnGUI()
@@ -52,7 +52,7 @@ namespace TORISOUP.AnimatorControllerAlignment.Editor
                 foreach (var layer in TakeLayers(selectedLayers))
                 {
                     if(layer >= controller.layers.Length) break;
-                    AlignmentTask.GridLayout(controller.layers[layer].stateMachine);
+                    LayoutHelper.GridLayout(controller.layers[layer].stateMachine);
                 }
 
                 EditorUtility.SetDirty(controller);
@@ -69,7 +69,7 @@ namespace TORISOUP.AnimatorControllerAlignment.Editor
                 foreach (var layer in TakeLayers(selectedLayers))
                 {
                     if(layer >= controller.layers.Length) break;
-                    AlignmentTask.Align(controller.layers[layer].stateMachine,
+                    LayoutHelper.Align(controller.layers[layer].stateMachine,
                         tryCount, k, naturalLength,
                         repulsivePower, threshold);
                 }
